@@ -8,10 +8,18 @@ int main() {
 
   // TODO: Uncomment the code below to pass the first stage
   while(true){
+
     cout << "$ ";
     string command;
     getline(cin, command);
-    if(command == "exit")break;
-    cout << command << ": command not found"<<endl ;
-}
+
+    if(command == "exit") {
+      break;
+    } else {
+      cout << command << ": command not found"<<endl ;
+    }
+      
+  }
+
+  
 }
