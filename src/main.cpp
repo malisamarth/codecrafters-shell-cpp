@@ -59,7 +59,7 @@ int main() {
             else {
                 // FIX: no extra space before colon + include quotes
                 string rawString = userInputString + ": not found";
-                cout << "\"" << rawString << "\"" << endl;
+                cout << rawString << endl;
             }
 
         } 
