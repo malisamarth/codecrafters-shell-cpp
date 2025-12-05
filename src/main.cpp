@@ -13,7 +13,6 @@ int main() {
   
   while (programIsRunning) {
     
-  
     std::string input;
     std::getline(std::cin, input);
   
@@ -21,9 +20,6 @@ int main() {
       programIsRunning = false;
     } else {
       std::cout << input << ": command not found" << std::endl;
-    
-      main();
-
     }
 
   }
