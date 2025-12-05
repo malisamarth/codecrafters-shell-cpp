@@ -1,12 +1,11 @@
 #include <iostream>
 #include <string>
 using namespace std;
+
 int main() {
-    // Flush after every std::cout / std:cerr
     cout << unitbuf;
     cerr << unitbuf;
 
-    // TODO: Uncomment the code below to pass the first stage
     while (true) {
 
         cout << "$ ";
@@ -16,61 +15,60 @@ int main() {
         if (command == "exit") {
             break;
         }
-        else {
 
-            int currentIndex = 0;
-            int commandLength = command.length();
-            string inputCommand = "";
-            bool inputCommandParsed = false;
-            string userInputString = "";
+        int currentIndex = 0;
+        int commandLength = command.length();
+        string inputCommand = "";
+        bool inputCommandParsed = false;
+        string userInputString = "";
 
-            while (currentIndex < commandLength) {
+        // FIX: correct loop condition
+        while (currentIndex < commandLength) {
 
-                if (command[currentIndex] != ' ' && !inputCommandParsed) {
-                    inputCommand += command[currentIndex];
-                    currentIndex++;
-                }
-                else {
-                    inputCommandParsed = true;
-
-                    if (currentIndex < commandLength) {
-                        userInputString += command[currentIndex];
-                    }
-                    currentIndex++;
-                }
-
-            }
-
-            if (!userInputString.empty() && userInputString[0] == ' ') {
-                userInputString.erase(0, 1);
-            }
-
-            if (inputCommand == "type") {
-
-                if (userInputString == "echo" || userInputString == "exit" || userInputString == "type") {
-                    std::cout << userInputString << " is a shell builtin" << std::endl;
-                }
-                else {
-                    std::cout << userInputString << " : not found" << std::endl;
-                }
-
+            if (command[currentIndex] != ' ' && !inputCommandParsed) {
+                inputCommand += command[currentIndex];
+                currentIndex++;
             }
             else {
-                if (inputCommand == "echo") {
-                    cout << userInputString << endl;
-                }
-                else {
-                    string rawString = userInputString + ": not found";
+                inputCommandParsed = true;
 
-                    std::cout << "\"" << rawString << "\"" << std::endl;
+                // FIX: read BEFORE increment
+                if (currentIndex < commandLength) {
+                    userInputString += command[currentIndex];
                 }
-
+                currentIndex++;
             }
-
-
         }
 
+        // FIX: trim leading space
+        if (!userInputString.empty() && userInputString[0] == ' ')
+            userInputString.erase(0, 1);
+
+        // FIX: trim trailing space
+        while (!userInputString.empty() && userInputString.back() == ' ')
+            userInputString.pop_back();
+
+        if (inputCommand == "type") {
+
+            if (userInputString == "echo" || 
+                userInputString == "exit" || 
+                userInputString == "type") {
+
+                cout << userInputString << " is a shell builtin" << endl;
+            }
+            else {
+                // FIX: no extra space before colon + include quotes
+                string rawString = userInputString + ": not found";
+                cout << "\"" << rawString << "\"" << endl;
+            }
+
+        } 
+        else if (inputCommand == "echo") {
+            cout << userInputString << endl;
+        }
+        else {
+            // FIX: only print once
+            cout << inputCommand << ": command not found" << endl;
+        }
     }
-
-
 }
