@@ -1,27 +1,17 @@
 #include <iostream>
 #include <string>
-
+using namespace std;
 int main() {
-  
   // Flush after every std::cout / std:cerr
-  std::cout << std::unitbuf;
-  std::cerr << std::unitbuf;
+  cout << unitbuf;
+  cerr << unitbuf;
 
   // TODO: Uncomment the code below to pass the first stage
-  std::cout << "$ ";
-  bool programIsRunning = true;
-  
-  while (programIsRunning) {
-    
-    std::string input;
-    std::getline(std::cin, input);
-  
-    if(input == "exit" || input.empty() || input == " ") {
-      programIsRunning = false;
-    } else {
-      std::cout << input << ": command not found" << std::endl;
-    }
-
-  }
-  
+  while(true){
+    cout << "$ ";
+    string command;
+    getline(cin, command);
+    if(command == "exit")break;
+    cout << command << ": command not found"<<endl ;
+}
 }
