@@ -21,7 +21,7 @@ int main() {
       int commandLength = command.length();
       string inputCommand = "";
       bool inputCommandParsed = false;
-      string echoString = "";
+      string inputUserString = "";
 
       while (commandLength >= currentIndex) {
         
@@ -33,7 +33,7 @@ int main() {
           currentIndex++;
 
           if (currentIndex <= commandLength) {
-            echoString += command[currentIndex];
+            inputUserString += command[currentIndex];
           }
 
         }
@@ -41,7 +41,7 @@ int main() {
       }
 
       if (inputCommand == "echo") {
-        cout << echoString << endl ;  
+        cout << inputUserString << endl ;  
       } else {
         cout << command << ": command not found"<<endl ;
       }
