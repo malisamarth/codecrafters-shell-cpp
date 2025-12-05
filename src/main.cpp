@@ -60,7 +60,7 @@ int main() {
                     cout << userInputString << endl;
                 }
                 else {
-                    cout << command << ": command not found" << endl;
+                    std::cout << "\"" << userInputString << ": not found\"" << std::endl;
                 }
 
             }
