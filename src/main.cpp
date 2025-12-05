@@ -16,10 +16,39 @@ int main() {
     if(command == "exit") {
       break;
     } else {
-      cout << command << ": command not found"<<endl ;
+
+      int currentIndex = 0;
+      int commandLength = command.length();
+      string inputCommand = "";
+      bool inputCommandParsed = false;
+      string echoString = "";
+
+      while (commandLength >= currentIndex) {
+        
+        if (command[currentIndex] != ' ' && !inputCommandParsed) {
+          inputCommand += command[currentIndex];
+          currentIndex++;
+        } else {
+          inputCommandParsed = true;
+          currentIndex++;
+
+          if (currentIndex <= commandLength) {
+            echoString += command[currentIndex];
+          }
+
+        }
+
+      }
+
+      if (inputCommand == "echo") {
+        cout << echoString << endl ;  
+      } else {
+        cout << command << ": command not found"<<endl ;
+      }
+      
     }
       
   }
 
-  
+
 }
