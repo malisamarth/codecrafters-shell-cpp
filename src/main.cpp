@@ -21,7 +21,7 @@ int main() {
       int commandLength = command.length();
       string inputCommand = "";
       bool inputCommandParsed = false;
-      string echoString = "";
+      string userInputString = "";
 
       while (commandLength >= currentIndex) {
         
@@ -33,18 +33,30 @@ int main() {
           currentIndex++;
 
           if (currentIndex <= commandLength) {
-            echoString += command[currentIndex];
+            userInputString += command[currentIndex];
           }
 
         }
 
       }
 
-      if (inputCommand == "echo") {
-        cout << echoString << endl ;  
+      if (inputCommand == "type") {
+
+        if (userInputString == "echo" || userInputString == "exit" || userInputString == "type") {
+          std::cout << userInputString << " is a shell builtin" << std::endl; 
+        } else {
+          std::cout << userInputString << " : not found" << std::endl; 
+        }
+
       } else {
-        cout << command << ": command not found"<<endl ;
+        if (inputCommand == "echo") {
+          cout << userInputString << endl ;  
+        } else {
+          cout << command << ": command not found"<<endl ;
+        }
+
       }
+
       
     }
       
