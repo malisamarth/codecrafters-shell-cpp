@@ -60,7 +60,9 @@ int main() {
                     cout << userInputString << endl;
                 }
                 else {
-                    std::cout << "\"" << userInputString << ": not found\"" << std::endl;
+                    string rawString = userInputString + ": not found";
+
+                    std::cout << "\"" << rawString << "\"" << std::endl;
                 }
 
             }
